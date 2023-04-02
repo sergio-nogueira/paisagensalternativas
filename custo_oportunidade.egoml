@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<script>
+    <property key="dff.charset" value="windows-1252" />
+    <property key="dff.date" value="2022-Jun-17 14:28:04" />
+    <property key="dff.version" value="6.1.0.20220118" />
+    <functor name="LoadWeights">
+        <property key="dff.functor.alias" value="loadWeights508" />
+        <inputport name="filename">&quot;../TIF/CdO/CSV/weights.csv&quot;</inputport>
+        <inputport name="suffixDigits">0</inputport>
+        <inputport name="step">.none</inputport>
+        <inputport name="workdir">.none</inputport>
+        <outputport name="weights" id="v1" />
+    </functor>
+    <functor name="SaveMap">
+        <property key="dff.functor.alias" value="saveMap543" />
+        <inputport name="map" peerid="v9" />
+        <inputport name="filename">&quot;../TIF/CdO/probabilities_mod_32.tif&quot;</inputport>
+        <inputport name="suffixDigits">2</inputport>
+        <inputport name="step">.none</inputport>
+        <inputport name="useCompression">.yes</inputport>
+        <inputport name="workdir">.none</inputport>
+        <inputport name="ignoreCostlySparseCategories">.yes</inputport>
+    </functor>
+    <containerfunctor name="Group">
+        <property key="dff.functor.alias" value="Paisagens" />
+        <inputport name="sequenceInput">.none</inputport>
+        <functor name="LoadCategoricalMap">
+            <property key="dff.functor.alias" value="loadCategoricalMap506" />
+            <inputport name="filename">&quot;../TIF/Metricas/bi_ce_limite_tc2018_30m.tif&quot;</inputport>
+            <inputport name="nullValue">.none</inputport>
+            <inputport name="storageMode">.default</inputport>
+            <inputport name="suffixDigits">0</inputport>
+            <inputport name="step">.none</inputport>
+            <inputport name="workdir">.none</inputport>
+            <outputport name="map" id="v2" />
+        </functor>
+    </containerfunctor>
+    <containerfunctor name="Group">
+        <property key="dff.functor.alias" value="Metricas" />
+        <inputport name="sequenceInput">.none</inputport>
+        <functor name="LoadMap">
+            <property key="dff.functor.alias" value="loadMap511" />
+            <inputport name="filename">&quot;../TIF/Metricas/bi_ce_dens_armazens_conab_01112021_30m_10000_v2.tif&quot;</inputport>
+            <inputport name="nullValue">.none</inputport>
+            <inputport name="storageMode">.default</inputport>
+            <inputport name="suffixDigits">0</inputport>
+            <inputport name="step">.none</inputport>
+            <inputport name="workdir">.none</inputport>
+            <outputport name="map" id="v3" />
+        </functor>
+        <functor name="LoadMap">
+            <property key="dff.functor.alias" value="loadMap511" />
+            <inputport name="filename">&quot;../TIF/Metricas/bi_ce_dist_estradas_osm_06052022_30m.tif&quot;</inputport>
+            <inputport name="nullValue">.none</inputport>
+            <inputport name="storageMode">.default</inputport>
+            <inputport name="suffixDigits">0</inputport>
+            <inputport name="step">.none</inputport>
+            <inputport name="workdir">.none</inputport>
+            <outputport name="map" id="v4" />
+        </functor>
+        <functor name="LoadMap">
+            <property key="dff.functor.alias" value="loadMap511" />
+            <inputport name="filename">&quot;../TIF/Metricas/bi_ce_declividade_pct_srtm_2000_30m.tif&quot;</inputport>
+            <inputport name="nullValue">.none</inputport>
+            <inputport name="storageMode">.default</inputport>
+            <inputport name="suffixDigits">0</inputport>
+            <inputport name="step">.none</inputport>
+            <inputport name="workdir">.none</inputport>
+            <outputport name="map" id="v5" />
+        </functor>
+        <functor name="LoadMap">
+            <property key="dff.functor.alias" value="loadMap511" />
+            <inputport name="filename">&quot;../TIF/Metricas/bi_ce_altitude_srtm_2000_30m.tif&quot;</inputport>
+            <inputport name="nullValue">.none</inputport>
+            <inputport name="storageMode">.default</inputport>
+            <inputport name="suffixDigits">0</inputport>
+            <inputport name="step">.none</inputport>
+            <inputport name="workdir">.none</inputport>
+            <outputport name="map" id="v6" />
+        </functor>
+        <functor name="LoadMap">
+            <property key="dff.functor.alias" value="loadMap511" />
+            <inputport name="filename">&quot;../TIF/Metricas/bi_ce_precipitacao_media_anual_2001_2020_gpm_30m.tif&quot;</inputport>
+            <inputport name="nullValue">.none</inputport>
+            <inputport name="storageMode">.default</inputport>
+            <inputport name="suffixDigits">0</inputport>
+            <inputport name="step">.none</inputport>
+            <inputport name="workdir">.none</inputport>
+            <outputport name="map" id="v7" />
+        </functor>
+        <functor name="LoadCategoricalMap">
+            <property key="dff.functor.alias" value="loadCategoricalMap508" />
+            <inputport name="filename">&quot;../TIF/Metricas/bi_ce_solos_ibge_1250000_30m.tif&quot;</inputport>
+            <inputport name="nullValue">.none</inputport>
+            <inputport name="storageMode">.default</inputport>
+            <inputport name="suffixDigits">0</inputport>
+            <inputport name="step">.none</inputport>
+            <inputport name="workdir">.none</inputport>
+            <outputport name="map" id="v8" />
+        </functor>
+    </containerfunctor>
+    <containerfunctor name="CalcWOfEProbabilityMap">
+        <property key="dff.container.collapsed" value="no" />
+        <property key="dff.functor.alias" value="calcWOfEProbabilityMap535" />
+        <inputport name="landscape" peerid="v2" />
+        <inputport name="weights" peerid="v1" />
+        <inputport name="transitions">[ 1-&gt;2 ]</inputport>
+        <inputport name="cellType">.uint32</inputport>
+        <inputport name="nullValue">.default</inputport>
+        <outputport name="probabilities" id="v9" />
+        <functor name="NameMap">
+            <property key="dff.functor.alias" value="nameMap536" />
+            <inputport name="map" peerid="v4" />
+            <inputport name="mapName">&quot;distestradas&quot;</inputport>
+        </functor>
+        <functor name="NameMap">
+            <property key="dff.functor.alias" value="nameMap537" />
+            <inputport name="map" peerid="v3" />
+            <inputport name="mapName">&quot;armazens&quot;</inputport>
+        </functor>
+        <functor name="NameMap">
+            <property key="dff.functor.alias" value="nameMap538" />
+            <inputport name="map" peerid="v7" />
+            <inputport name="mapName">&quot;precipitacao&quot;</inputport>
+        </functor>
+        <functor name="NameMap">
+            <property key="dff.functor.alias" value="nameMap539" />
+            <inputport name="map" peerid="v5" />
+            <inputport name="mapName">&quot;declividade&quot;</inputport>
+        </functor>
+        <functor name="NameMap">
+            <property key="dff.functor.alias" value="nameMap540" />
+            <inputport name="map" peerid="v8" />
+            <inputport name="mapName">&quot;solos&quot;</inputport>
+        </functor>
+        <functor name="NameMap">
+            <property key="dff.functor.alias" value="nameMap542" />
+            <inputport name="map" peerid="v6" />
+            <inputport name="mapName">&quot;altitude&quot;</inputport>
+        </functor>
+    </containerfunctor>
+</script>
